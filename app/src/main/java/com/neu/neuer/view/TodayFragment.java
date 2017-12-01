@@ -76,7 +76,7 @@ public class TodayFragment extends Fragment implements ITodayView,View.OnClickLi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.main_layout,container,false);
+       View view = inflater.inflate(R.layout.today_layout,container,false);
        Bundle bundle = getArguments();
        viewPager = (ViewPager)view.findViewById(R.id.rotate_vp);
        pointLl = (LinearLayout)view.findViewById(R.id.rotate_point_container);
@@ -118,9 +118,8 @@ public class TodayFragment extends Fragment implements ITodayView,View.OnClickLi
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         hIcon.setLayoutManager(linearLayoutManager);
-        HIconAdapter hIconAdapter = new HIconAdapter(hIconData);
+        HIconAdapter hIconAdapter = new HIconAdapter(getActivity(),hIconData);
         hIcon.setAdapter(hIconAdapter);
-
         listView = (ListView)view.findViewById(R.id.news_list);
         listView.setAdapter(new CommonAdapter<News>(getActivity(),newsData,R.layout.news_item_layout) {
 

@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements IMainView ,Bottom
         Intent intent = new Intent(this, NetworkStateService.class);
         intent.setAction("com.text.service.NetworkStateService");
         startService(intent);
+
+
     }
 
     /**
