@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements IMainView ,Bottom
     private SchoolFragment schoolFragment;
     private MineFragment mineFragment;
     private Toolbar toolbar;
+    private long mExitTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,4 +122,15 @@ public class MainActivity extends AppCompatActivity implements IMainView ,Bottom
      * which is packaged with this application.
      */
 //    public native String stringFromJNI();
+
+    @Override
+    public void onBackPressed() {
+        if((System.currentTimeMillis() - mExitTime)>2000){
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            mExitTime = System.currentTimeMillis();
+        }else{
+            finish();
+            System.exit(0);
+        }
+    }
 }

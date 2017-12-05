@@ -1,6 +1,7 @@
 package com.neu.neuer.view;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -13,11 +14,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.neu.neuer.R;
 import com.neu.neuer.adapter.HIconAdapter;
@@ -110,6 +113,19 @@ public class TodayFragment extends Fragment implements ITodayView,View.OnClickLi
                 textView.setText(item.getiName());
             }
         });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tag = (TextView)view.findViewById(R.id.text_icon);
+                String str = tag.getText().toString();
+                if(str.equals("一键联网")){
+                    Intent intent = new Intent(getActivity(),NetActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "敬请期待", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         //消除gridView的点击效果
         gridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
 
@@ -119,6 +135,7 @@ public class TodayFragment extends Fragment implements ITodayView,View.OnClickLi
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         hIcon.setLayoutManager(linearLayoutManager);
         HIconAdapter hIconAdapter = new HIconAdapter(getActivity(),hIconData);
+
         hIcon.setAdapter(hIconAdapter);
         listView = (ListView)view.findViewById(R.id.news_list);
         listView.setAdapter(new CommonAdapter<News>(getActivity(),newsData,R.layout.news_item_layout) {

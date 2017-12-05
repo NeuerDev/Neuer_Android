@@ -34,7 +34,7 @@ public class HIconAdapter extends RecyclerView.Adapter<HIconHolder>{
         final HIconHolder viewholder = new HIconHolder(view);
         viewholder.getRelativeLayout().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { 
+            public void onClick(View view) {
                 if(viewholder.getTitle().getText().toString().equals("电视直播")){
                     Intent intent = new Intent(context, Ipv6Activity.class);
                     context.startActivity(intent);
